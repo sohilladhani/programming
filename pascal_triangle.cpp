@@ -6,9 +6,6 @@ https://www.interviewbit.com/problems/pascal-triangle/
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <list>
-#include <queue>
 using namespace std;
 
 void print_vector(vector<int> v) {

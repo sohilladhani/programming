@@ -1,3 +1,4 @@
 #Ignore these compiled files
 *.class
 *.o
+.directory

@@ -13,6 +13,41 @@
 
 class URLify {
 
+	public static String URLifyTheStringInPlace(String inputString, int trueLength) {
+		if(trueLength <= 0) return "";
+
+		int noOfSpaces = 0;
+		char inputArray[] = inputString.toCharArray();
+	
+		for(int i = 0; i < trueLength; i++) {
+			if(inputArray[i] == ' ') {
+				noOfSpaces++;
+			}
+		}
+
+		int finalLength = noOfSpaces * 2 + trueLength;
+		
+		if(trueLength < inputArray.length) inputArray[trueLength] = '\0';
+
+		int i = trueLength - 1;
+		int j = finalLength - 1;
+
+
+		while(i>0){
+			if(inputArray[i] == ' ') {
+				inputArray[j--] = '0';
+				inputArray[j--] = '2';
+				inputArray[j] = '%';
+			} else {
+				inputArray[j] = inputArray[i];
+			}
+			i--;
+			j--;
+		}
+
+		return String.valueOf(inputArray);
+	}
+
 	public static String URLifyTheString(String inputString, int true_length) {
 		if(true_length <= 0) {
 			return "";
@@ -43,8 +78,9 @@ class URLify {
 	}
 
 	public static void main(String args[]) {
-		String string = " Mr John Smith    ";
+		String string = "Mr John Smith    ";
 		System.out.println(URLifyTheString(string, 13));
+		System.out.println(URLifyTheStringInPlace(string, 13));
 	}
 
 }

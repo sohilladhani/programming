@@ -41,6 +41,10 @@ class StringCompression {
 		compressedString.append(currentCharacter);
 		compressedString.append(currentCharacterCount);
 
+		if(compressedString.toString().length() > stringToBeCompressedLength) {
+			return stringToBeCompressed;
+		}
+
 		return compressedString.toString();
 	}
 

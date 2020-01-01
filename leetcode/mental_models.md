@@ -47,5 +47,5 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 | Mental Model                                                                 |
 | :--------------------------------------------------------------------------: |
-| Traverse bo the lists. For each node of the lists, check 4 conditions<br>L1=NULL,L2=NULL--> next=NULL,L1!=NULL,L2=NULL--> next=L1,L1=NULL,L2!=NULL--> next=L2, L1!=NULL,L2!=NULL--> min(L1,L2) |
+| Iteration: Create a dummy node. Traverse bo the lists. For each node of the lists, check 4 conditions<br>L1=NULL,L2=NULL--> next=NULL,L1!=NULL,L2=NULL--> next=L1,L1=NULL,L2!=NULL--> next=L2, L1!=NULL,L2!=NULL--> min(L1,L2) |
 

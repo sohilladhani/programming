@@ -49,3 +49,16 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 | :--------------------------------------------------------------------------: |
 | Iteration: Create a dummy node. Traverse bo the lists. For each node of the lists, check 4 conditions<br>L1=NULL,L2=NULL--> next=NULL,L1!=NULL,L2=NULL--> next=L1,L1=NULL,L2!=NULL--> next=L2, L1!=NULL,L2!=NULL--> min(L1,L2) |
 
+---
+
+#### [242 Valid Anagram](https://leetcode.com/problems/valid-anagram)
+#### [Solution](242_valid_anagram.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Determine if 2 strings are anagram of each other              |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| ASCII: Create an array of size 128 (all 0's). For each character of s1, increment corresponding ascii index. For s2, decrement corresponding ascii index. If all elements the array are 0's return true, else false |
+

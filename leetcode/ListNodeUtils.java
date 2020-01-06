@@ -19,4 +19,16 @@ public class ListNodeUtils {
         }
         System.out.println("NULL");
     }
+
+    public static ListNode getNodeAtPosition(ListNode head, int pos) {
+        if (head == null || pos < 0) {
+            return null;
+        }
+        
+        while (pos != 0) {
+            head = head.next;
+            pos--;
+        }
+        return head;
+    }
 }

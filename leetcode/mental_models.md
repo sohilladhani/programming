@@ -62,3 +62,16 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 | :--------------------------------------------------------------------------: |
 | ASCII: Create an array of size 128 (all 0's). For each character of s1, increment corresponding ascii index. For s2, decrement corresponding ascii index. If all elements the array are 0's return true, else false |
 
+---
+
+#### [141 Linked List Cycle](https://leetcode.com/problems/linked-list-cycle)
+#### [Solution](141_linked_list_cycle.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Determine if there is a cycle in the linked list              |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Create 2 pointers: fast and slow. Move fast by 2 steps and slow by 1 step. If both meet, cycle is present |
+

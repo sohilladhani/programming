@@ -75,3 +75,16 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 | :--------------------------------------------------------------------------: |
 | Create 2 pointers: fast and slow. Move fast by 2 steps and slow by 1 step. If both meet, cycle is present |
 
+---
+
+#### [155 Min Stack](https://leetcode.com/problems/min-stack)
+#### [Solution](155_min_stack.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Design a stack which has a method getMin() to return the min element in O(1) time |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Create a 'min stack' which tracks the minimum elements such that the top always returns the minimum value. Make getMin() return that value | 
+

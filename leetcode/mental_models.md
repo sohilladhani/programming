@@ -88,3 +88,16 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 | :--------------------------------------------------------------------------: |
 | Create a 'min stack' which tracks the minimum elements such that the top always returns the minimum value. Make getMin() return that value | 
 
+---
+
+#### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)
+#### [Solution](142_linked_list_cycle_2.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Determine if there is a cycle in the linked list and return the node where the cycle begins |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Create 2 pointers: fast and slow. Move fast by 2 steps and slow by 1 step. If both meet, cycle is present. Make fast point to head. Make fast and slow move by 1 step. The node where they meet is the beginning of the cycle. This is also calld Floyd's algo for cycle detection. Reason it works? Let (d = distance to the start of loop), (k = distance from start of the loop), (l = length of the loop), (i = no. of cycles covered in the loop by fast pointer), (j = no. of cycles covered in the loop by slow pointer), (f = distance travelled by the fast pointer), (s = dist travelled by the slow pointer). Hence, (f = d + k + l.i), (s = d + k + j.l). Both fast and slow pointer meet at the node 'k' steps away from the start of the loop. We know that (f = 2.s). So, (d + k + i.l = 2.d + 2.k + 2.j.l). So, (d + k = (i-2.j).l). (i-2j) is an integer. So, (d + k = N.l). Hence, (N.l) is the start of the loop. When we put fast pointer at the start of the list and move both the pointers only 1 step at a time, and the fast pointer travels distance = d, slow pointer has also travelled d distance, and since slow pointer was already at the node 'k' steps away from the start of the loop, slow pointer is now at the node (d + k). And since (d + k = N.l = start of the loop), we can say that both the pointers met at the start of the loop and return that node. |
+

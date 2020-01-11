@@ -103,6 +103,19 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 ---
 
+#### [88 Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array)
+#### [Solution](88_merge_sorted_array.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Given two sorted integer arrays nums1 (size = m) and nums2 (size = n), merge nums2 into nums1 as one sorted array. Resultant array should be nums1. nums1 is of enough capacity |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Create 3 pointers - 1 for first array (n1), 1 for second array (n2) and 1 for the rest of elements (h). If n!=0 then... If nums1[n1] > nums2[n2], make space for nums2[n2] by shifting elements in nums1, else increment n1. Corner cases: (1) m=0, n=1 ==> nums1 = num2 |
+
+---
+
 ### Difficulty: Medium
 
 #### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)

@@ -116,6 +116,19 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 ---
 
+#### [160 Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists)
+#### [Solution](160_intersection_of_two_linked_lists.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Find the node at which the intersection of two singly linked lists begins | 
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Find difference (d) of lengths of the lists. Start from 'd' steps of the longer list and from starting node of the other list. Move single step. When they meet, it's the intersecting node |
+
+---
+
 ### Difficulty: Medium
 
 #### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)

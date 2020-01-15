@@ -129,6 +129,19 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 ---
 
+#### [204 Count Primes](https://leetcode.com/problems/count-primes)
+#### [Solution](204_count_primes.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Count the number of prime numbers less than a non-negative number, n |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| (Sieve of Eratosthenes) Create an array of size 'n' in which every number is marked as prime. For i=2 to sqrt(n), for every number in the array, mark its multiples as non-prime. Count number of primes in the array and return it |
+
+---
+
 ### Difficulty: Medium
 
 #### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)

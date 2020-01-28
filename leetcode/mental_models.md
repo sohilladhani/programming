@@ -142,6 +142,19 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 ---
 
+#### [344 Reverse String](https://leetcode.com/problems/reverse-string)
+#### [Solution](344_reverse_string.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Write a function that reverses a string with O(1) extra memory. The input string is given as an array of characters char[] |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Create 2 pointers. 1 from beginning and another from the other end of array. Keep swapping the elements pointed by the pointers till one of the pointer reaches half of the array. |
+
+---
+
 ### Difficulty: Medium
 
 #### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)

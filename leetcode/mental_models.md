@@ -155,6 +155,19 @@ Inspired by this post: [Link](https://hackernoon.com/what-it-took-to-land-my-dre
 
 ---
 
+#### [283 Move Zeroes](https://leetcode.com/problems/move-zeroes)
+#### [Solution](283_move_zeroes.java)
+
+|                      Description                              |
+| :-----------------------------------------------------------: |
+| Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements |
+
+| Mental Model                                                                 |
+| :--------------------------------------------------------------------------: |
+| Bubble sort but rather than comparing with greater number, compare with '0' (zero) |
+
+---
+
 ### Difficulty: Medium
 
 #### [142 Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii)

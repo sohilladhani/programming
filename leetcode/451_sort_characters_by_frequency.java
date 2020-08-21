@@ -41,10 +41,10 @@ import java.util.*;
 class FrequencySort {
     
     class Pair implements Comparable<Pair> {
-        char letter;
+        int letterIndex;
         int frequency;
-        public Pair(char letter, int frequency) {
-            this.letter = letter;
+        public Pair(int letterIndex, int frequency) {
+            this.letterIndex = letterIndex;
             this.frequency = frequency;
         }
         
@@ -57,33 +57,28 @@ class FrequencySort {
     public String frequencySort(String s) {
         PriorityQueue<Pair> maxHeap = new
             PriorityQueue<>(Comparator.reverseOrder());
-        Map<Character, Integer> map = new HashMap<>();
-        String ans = "";
+        int[] freqs = new int[128];
+        StringBuilder ans = new StringBuilder("");
         for(int i = 0; i < s.length(); i++) {
-            int newValue = 1;
-            if(map.get(s.charAt(i)) != null) {
-                newValue = map.get(s.charAt(i));
-                newValue++;
-                map.put(s.charAt(i), newValue);
-            } else {
-                map.put(s.charAt(i), newValue);
-            }
+            freqs[(int) s.charAt(i)]++;
         }
         
-        for(Map.Entry<Character, Integer> entry: map.entrySet()) {
-            maxHeap.add(new Pair(entry.getKey(), entry.getValue()));
+        for(int i = 0; i < freqs.length; i++) {
+            if(freqs[i] > 0) {
+                maxHeap.add(new Pair(i, freqs[i]));
+            }
         }
         while(!maxHeap.isEmpty()) {
             for(int i = 0; i < maxHeap.peek().frequency; i++) {
-                ans = ans + maxHeap.peek().letter;
+                ans.append((char) maxHeap.peek().letterIndex);
             }
             maxHeap.poll();
         }
-        return ans;
+        return ans.toString();
     }
 
     public static void main(String[] args) {
-        String str = "Aabb";
+        String str = "tree";
         System.out.println(new FrequencySort().frequencySort(str));
     }
 }

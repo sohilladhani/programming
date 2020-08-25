@@ -31,33 +31,22 @@ class TreeNode {
  
 class SumOfLeftLeaves {
     int sum = 0;
-    Queue<TreeNode> queue = new LinkedList<>();
     public int sumOfLeftLeaves(TreeNode root) {
         /* a node is left leave if node == leaf && node = node.parent.left */
-        TreeNode temp = root;
-        traverse(temp, queue);
-        while(!queue.isEmpty()) {
-            if(queue.peek() == null) {
-                queue.poll();
-                sum += queue.poll().val;
-            } else {
-                queue.poll();
-            }
-        }
+        traverse(root);
         return sum;
     }
     
-    private void traverse(TreeNode root, Queue q) {
+    private void traverse(TreeNode root) {
         if(root == null) return;
-        q.add(root);
         if(root.left != null) {
             if(root.left.left == null && root.left.right == null) {
-                q.add(null);
+                sum += root.left.val;
             }
-            traverse(root.left, q);
+            traverse(root.left);
         }
         if(root.right != null) {
-            traverse(root.right, q);
+            traverse(root.right);
         }
     }
 }

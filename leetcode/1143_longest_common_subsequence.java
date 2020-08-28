@@ -41,7 +41,8 @@ class LongestCommonSubsequence {
     int[][] cache;
     public int longestCommonSubsequence(String text1, String text2) {
         cache = new int[text1.length() + 1][text2.length() + 1];
-        return lcs(text1, text2, text1.length(), text2.length()); 
+        //return lcs(text1, text2, text1.length(), text2.length()); 
+        return lcs_tabular(text1, text2);
     }
     
     private int lcs(String X, String Y, int n, int m) {
@@ -53,6 +54,24 @@ class LongestCommonSubsequence {
         } else {
             return cache[n][m] = Math.max(lcs(X, Y, n, m-1), lcs(X, Y, n-1, m));
         }
+    }
+
+    private int lcs_tabular(String X, String Y) {
+        int n = X.length(); int m = Y.length();
+        cache = new int[n + 1][m + 1];
+        for(int i = 0; i < n + 1; i++) cache[i][0] = 0;
+        for(int j = 0; j < m + 1; j++) cache[0][j] = 0;
+
+        for(int i = 1; i < n + 1; i++) {
+            for(int j = 1; j < m + 1; j++) {
+                if(X.charAt(i-1) == Y.charAt(j-1)) {
+                    cache[i][j] = 1 + cache[i-1][j-1];
+                } else {
+                    cache[i][j] = Math.max(cache[i-1][j], cache[i][j-1]);
+                }
+            }
+        }
+        return cache[n][m];
     }
 
     public static void main(String[] args) {

@@ -26,7 +26,7 @@ class PrintLongestCommonSubsequence {
         int i = n; int j = m; 
         while(i>0 && j>0) {
             if(X.charAt(i-1) == Y.charAt(j-1)) {
-                sb.append(X.charAt(i-1));
+                sb.insert(0, X.charAt(i-1));
                 i--; j--;
             } else {
                 if(cache[i-1][j] > cache[i][j-1]) {
@@ -36,7 +36,7 @@ class PrintLongestCommonSubsequence {
                 }
             }
         }
-        return sb.reverse().toString();
+        return sb.toString();
     }
 
     public String printLongestCommonSubsequence(String X, String Y) {

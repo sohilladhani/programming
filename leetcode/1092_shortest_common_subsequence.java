@@ -71,6 +71,47 @@ class ShortestCommonSubsequence {
         return sb.toString();
     }
 
+    public String scsMethod2(String str1, String str2) {
+        int n = str1.length(); int m = str2.length();
+        StringBuilder[][] cache = new StringBuilder[n+1][m+1];
+
+        for(int i = 0; i < n+1; i++) {
+            for(int j = 0; j < m+1; j++) {
+                cache[i][j] = new StringBuilder(""); 
+            }
+        }
+        for(int i = 1; i < n+1; i++) {
+            cache[i][0] = 
+                new StringBuilder(cache[i-1][0]).append(str1.charAt(i-1));
+        }
+        for(int j = 1; j < m+1; j++) {
+            cache[0][j] = 
+                new StringBuilder(cache[0][j-1]).append(str2.charAt(j-1));
+        }
+        cache[0][0] = new StringBuilder("");
+        printCacheString(cache);
+
+        for(int i = 1; i < n+1; i++) {
+            for(int j = 1; j < m+1; j++) {
+                if(str1.charAt(i-1) == str2.charAt(j-1)) {
+                    cache[i][j] = 
+                        new
+                        StringBuilder(cache[i-1][j-1].append(str1.charAt(i-1)));
+                } else {
+                    if(cache[i-1][j].length() > cache[i][j-1].length()) {
+                        cache[i][j] = new
+                            StringBuilder(cache[i][j].append(cache[i][j-1]).append(str2.charAt(j-1)));
+                    } else {
+                        cache[i][j] = new
+                            StringBuilder(cache[i][j].append(cache[i-1][j]).append(str1.charAt(i-1)));
+                    }
+                }
+            }
+        }
+        printCacheString(cache);
+        return cache[n][m].toString();
+    }
+
     public int shortestCommonSupersequenceLength(String str1, String str2) {
         int n = str1.length(); int m = str2.length();
         //cache = new int[n+1][m+1];
@@ -135,6 +176,15 @@ class ShortestCommonSubsequence {
         return cache[n][m];
     }
 
+    private void printCacheString(StringBuilder[][] cache) {
+        for(int i = 0; i < cache.length; i++) {
+            for(int j = 0; j < cache[i].length; j++) {
+                System.out.print(cache[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
     private void printCache(int[][] cache) {
         for(int i = 0; i < cache.length; i++) {
             for(int j = 0; j < cache[i].length; j++) {
@@ -158,12 +208,14 @@ class ShortestCommonSubsequence {
         String Y = "";
         X = "abac";
         Y = "cab";
-        printStringWithTimeInMs(scs.shortestCommonSupersequence(X, Y));
-        System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
+        //printStringWithTimeInMs(scs.shortestCommonSupersequence(X, Y));
+        printStringWithTimeInMs(scs.scsMethod2(X, Y));
+        //System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
         X = "geek";
         Y = "eke";
-        System.out.println(scs.scslTabular2(X, Y));
-        printStringWithTimeInMs(scs.shortestCommonSupersequence(X, Y));
-        System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
+        //System.out.println(scs.scslTabular2(X, Y));
+        //printStringWithTimeInMs(scs.shortestCommonSupersequence(X, Y));
+        printStringWithTimeInMs(scs.scsMethod2(X, Y));
+        //System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
     }
 }

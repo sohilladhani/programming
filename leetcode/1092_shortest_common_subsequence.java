@@ -92,6 +92,27 @@ class ShortestCommonSubsequence {
         }
     }
 
+    private int scslTabular2(String X, String Y) {
+        /* scsl = m + n - lcs(X,Y)
+         * Explanation: 
+         * https://youtu.be/823Grn4_dCQ?list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go*/
+
+        int n = X.length(); int m = Y.length();
+        int[][] cache = new int[n+1][m+1];
+        
+        for(int i = 1; i < n+1; i++) {
+            for(int j = 1; j < m+1; j++) {
+                if(X.charAt(i-1) == Y.charAt(j-1)) {
+                    cache[i][j] = 1 + cache[i-1][j-1];
+                } else {
+                    cache[i][j] = Math.max(cache[i-1][j], cache[i][j-1]);
+                }
+            }
+        }
+        System.out.println("scslTabular2");
+        printCache(cache);
+        return (m + n - cache[n][m]);
+    }
     private int scsl_tabular(String X, String Y) {
         int n = X.length(); int m = Y.length();
         cache = new int[n+1][m+1];
@@ -141,6 +162,7 @@ class ShortestCommonSubsequence {
         System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
         X = "geek";
         Y = "eke";
+        System.out.println(scs.scslTabular2(X, Y));
         printStringWithTimeInMs(scs.shortestCommonSupersequence(X, Y));
         System.out.println(scs.shortestCommonSupersequenceLength(X,Y));
     }

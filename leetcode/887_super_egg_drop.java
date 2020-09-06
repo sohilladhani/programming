@@ -48,8 +48,42 @@ https://youtu.be/S49zeUjeUL0?list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go
 */
 
 class SuperEggDrop {
+    int[][] cache;
     public int superEggDrop(int eggs, int floors) {
-        return sedRecursive(eggs, floors); 
+        cache = new int[eggs+1][floors+1];
+        return sedDP(eggs, floors); 
+    }
+
+    private int sedDP(int eggs, int floors) {
+        if(cache[eggs][floors] != 0) return cache[eggs][floors];
+        if(eggs == 1) return floors;
+        if(floors == 0 || floors == 1) return floors;
+
+        int minAttempts = Integer.MAX_VALUE;
+        int low = 1; int high = floors;
+
+//        for(int k = 1; k <= floors; k++) {
+//            int attempts = 1 + Math.max(sedDP(eggs-1, k - 1), 
+//                                        sedDP(eggs, floors - k));
+//            minAttempts = Math.min(minAttempts, attempts);
+//        }
+
+        //https://leetcode.com/problems/super-egg-drop/discuss/792736/CPP-Explained-Recursive-greatermemoization-greateroptimization-greaterDP-oror-Well-Explained-oror-Easy-to-unserstand
+        //Using binary search to reduce search space
+        while(low <= high) {
+            int mid = low + (high - low)/2;
+            int left = sedDP(eggs - 1, mid - 1);
+            int right = sedDP(eggs, floors - mid);
+            //Taking maximum since we want worst case
+            int attempts = 1 + Math.max(left, right); 
+            if(left < right) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+            minAttempts = Math.min(minAttempts, attempts);
+        }
+        return cache[eggs][floors] = minAttempts;
     }
 
     private int sedRecursive(int eggs, int floors) {
@@ -86,6 +120,12 @@ class SuperEggDrop {
         System.out.println(sed.superEggDrop(eggs, floors));
         eggs = 3;
         floors = 14;
+        System.out.println(sed.superEggDrop(eggs, floors));
+        eggs = 2;
+        floors = 100;
+        System.out.println(sed.superEggDrop(eggs, floors));
+        eggs = 6;
+        floors = 1000;
         System.out.println(sed.superEggDrop(eggs, floors));
     }
 }

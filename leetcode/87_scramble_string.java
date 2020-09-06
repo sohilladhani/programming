@@ -67,7 +67,7 @@ class ScrambleString {
         if(a.equals(b)) return true;
         if(n <= 1) return false;
         
-        boolean isSR = false;
+        boolean isSS = false;
         boolean swapped = false;
         boolean not_swapped = false;
         for(int i = 1; i < n; i++) {
@@ -85,8 +85,12 @@ class ScrambleString {
 //                           new String(b.getBytes(), 0, i)) &&
 //                      isSR(new String(a.getBytes(), i, n-i), 
 //                           new String(b.getBytes(), i, n-i));
+            if(swapped || not_swapped) {
+                isSS = true;
+                break;
+            }
         }
-        return swapped || not_swapped;
+        return isSS;
     }
 
     public static void main(String[] args) {

@@ -50,19 +50,22 @@ Constraints:
 Explanation:
 https://youtu.be/SqA0o-DGmEw?list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go
 */
+import java.util.*;
 
 class ScrambleString {
-    public boolean isScramble(String s1, String s2) {
-        return false; 
-    }
-
-    public boolean isScrambleRecursive(String a, String b) {
+    Map<Integer, Boolean> cache;
+    public boolean isScramble(String a, String b) {
         if(a.length() != b.length()) return false;
         if(a.length() == 0) return false;
+        cache = new HashMap<>();
         return isSR(a, b);
     }
 
     private boolean isSR(String a, String b) {
+        int hash = (a + "_" + b).hashCode();
+        if(cache.get(hash) != null) {
+            return cache.get(hash);
+        }
         int n = a.length();
         if(a.equals(b)) return true;
         if(n <= 1) return false;
@@ -71,11 +74,13 @@ class ScrambleString {
         boolean swapped = false;
         boolean not_swapped = false;
         for(int i = 1; i < n; i++) {
-            swapped = isSR(a.substring(0, i), b.substring(n-i, n)) &&
-                              isSR(a.substring(i, n), b.substring(0, n-i));
-
-            not_swapped = isSR(a.substring(0, i), b.substring(0, i)) &&
-                                  isSR(a.substring(i, n), b.substring(i, n));
+            if(isSR(a.substring(0, i), b.substring(n-i, n)) &&
+                              isSR(a.substring(i, n), b.substring(0, n-i))) {
+                swapped = true;
+            } else if(isSR(a.substring(0, i), b.substring(0, i)) && 
+                      isSR(a.substring(i, n), b.substring(i, n))) {
+                not_swapped = true;
+            }
 //            swapped = isSR(new String(a.getBytes(), 0, i), 
 //                           new String(b.getBytes(), n-i, i)) &&
 //                      isSR(new String(a.getBytes(), i, n-i), 
@@ -90,6 +95,7 @@ class ScrambleString {
                 break;
             }
         }
+        cache.put(hash, isSS);
         return isSS;
     }
 
@@ -99,9 +105,9 @@ class ScrambleString {
         String b = "";
         a="great";
         b="rgeat";
-        System.out.println(ss.isScrambleRecursive(a,b));
+        System.out.println(ss.isScramble(a,b));
         a="abcde";
         b="caebd";
-        System.out.println(ss.isScrambleRecursive(a,b));
+        System.out.println(ss.isScramble(a,b));
     }
 }

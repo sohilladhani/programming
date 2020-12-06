@@ -17,6 +17,23 @@ Could you solve it with constant space complexity? (The output array does not co
 */
 
 class ProductOfArray {
+    public int[] productExceptSelfSpaceEfficient(int[] nums) {
+        int length = nums.length;
+        int res[] = new int[length];
+        int product = 1;
+        for(int i = 0; i < length; i++) {
+            product = product * nums[i];
+            res[i] = product;
+        }
+        product = 1;
+        for(int i = length - 1; i >= 1; i--) {
+            res[i] = product * res[i-1];
+            product = product * nums[i];
+        }
+        res[0] = product;
+        return res;
+    }
+
     public int[] productExceptSelf(int[] nums) {
         //brute force
         //multiply other numbers except self - O(n^2)

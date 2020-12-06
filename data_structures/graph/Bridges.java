@@ -41,6 +41,69 @@ class Bridges {
     int[] ids = null;
     int[] lows = null;
     boolean[] visited = null;
+    boolean[] isArt = null;
+    int outEdgeCount = 0;
+    public List<Edge> findArticulationPoints(Map<Integer, List<Integer>> adj) {
+        int n = adj.size();
+        List<Edge> bridges = new ArrayList<>();
+        ids = new int[n];
+        lows = new int[n];
+        visited = new boolean[n];
+        isArt = new boolean[n];
+
+        for(int i = 0; i < n; i++) {
+            if(visited[i] == true) continue;
+            outEdgeCount = 0;
+            dfsArt(i, i, -1, bridges, adj);
+            isArt[i] = (outEdgeCount > 1);
+        }
+        
+        System.out.println("Articulation points:");
+        for(int i = 0; i < n; i++) {
+            if(isArt[i] == true) {
+                System.out.printf("%d, ", i);
+            }
+        }
+        System.out.println();
+
+        return bridges;
+    }
+
+    private void dfsArt(int root, int at, int parent, List<Edge> bridges,
+                     Map<Integer, List<Integer>> adj) {
+        if(parent == root) outEdgeCount++;
+        visited[at] = true;
+        id = id + 1;
+        lows[at] = ids[at] = id;
+
+        /* for each adjacent node (child) of at node */
+        for(int to: adj.get(at)) {
+            if(to == parent) continue; // undirected graph
+            // if the destination node is not visited
+            if(visited[to] == false) {
+                //forward edge - the 'to' is yet to be visited
+                dfsArt(root, to, at, bridges, adj);
+                //callback from DFS to parent
+                //update low link value of parent if the child has lower low
+                //link value
+                lows[at] = Math.min(lows[at], lows[to]);
+                //if id of current node is less than low link of the destination
+                //node, it's a bridge
+                //Articulation point found via bridge
+                if(ids[at] < lows[to]) {
+                    isArt[at] = true;
+                }
+                //Articulation point found via cycle
+                if(ids[at] == lows[to]) {
+                    isArt[at] = true;
+                }
+            } else {
+                //back edge - edge which has edge to its ancestor
+                lows[at] = Math.min(lows[at], ids[to]);
+            }
+        }
+    } 
+
     public List<Edge> findBridges(Map<Integer, List<Integer>> adj) {
         int n = adj.size();
         List<Edge> bridges = new ArrayList<>();
@@ -106,5 +169,6 @@ class Bridges {
         Bridges bridges = new Bridges();
         //bridges.printAdjList(bridges.getAdjList(edges));
         bridges.printBridges(bridges.findBridges(bridges.getAdjList(edges)));
+        bridges.findArticulationPoints(bridges.getAdjList(edges));
     }
 }

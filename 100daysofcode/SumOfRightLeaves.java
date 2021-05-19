@@ -1,4 +1,4 @@
-https://binarysearch.com/problems/Sum-of-Right-Leaves
+/* https://binarysearch.com/problems/Sum-of-Right-Leaves */
 /**
  * public class Tree {
  *   int val;

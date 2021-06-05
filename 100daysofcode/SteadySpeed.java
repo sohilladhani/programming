@@ -7,9 +7,8 @@ class Solution {
         int i = 0;
         int j = 1;
         int maxWindow = Integer.MIN_VALUE;
-        int diff = Math.abs(positions[j] - positions[j - 1]);
-        int window = 2;
-        j++;
+        int diff = 0;
+        int window = 1;
         while (i < positions.length && j < positions.length) {
             if (diff != Math.abs(positions[j] - positions[j - 1])) {
                 diff = Math.abs(positions[j] - positions[j - 1]);

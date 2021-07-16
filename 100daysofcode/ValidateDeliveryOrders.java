@@ -13,7 +13,7 @@ class Solution {
                 if(map.get(orderId) != null) return false;
                 map.put(orderId, 1);
             } else {
-                if(map.get(orderId) == null) return false;
+                if(map.get(orderId) == null || map.get(orderId) == 0) return false;
                 map.put(orderId, 0);
             }
         }
